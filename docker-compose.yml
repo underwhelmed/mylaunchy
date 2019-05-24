@@ -1,0 +1,21 @@
+version: "3.4"
+
+services:
+
+  launchpad:
+    image: mylaunchy-service-launchpad
+    build:
+      context: app/.
+      dockerfile: mylaunchy.services.launchpad/Dockerfile
+      args:
+        sdk_tag: ${NETCORE_SDK_VERSION}
+        runtime_tag: ${ASPNETCORE_RUNTIME_VERSION}
+    ports:
+      - "5010:80"
+    networks:
+      - mylaunchy
+    env_file:
+      - .env
+
+networks:
+  mylaunchy:
